@@ -11,12 +11,6 @@ jobs:
       - name: Generate ZIP
         run: |
           zip deployment.zip *.py
-      - name: Debug AWS Region
-        run: |
-          echo ${{ secrets.AWS_REGION }}
-          echo ${{ secrets.AWS_ACCESS_KEY_ID }}
-          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        
       - name: default deploy
         uses: appleboy/lambda-action@master
         with:
