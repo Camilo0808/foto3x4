@@ -5,15 +5,18 @@ jobs:
   deploy_zip:
     name: deploy lambda function
     runs-on: ubuntu-latest
-    #strategy:
-      #matrix:
-        #go-version: [1.13.x]
     steps:
       - name: checkout source code
         uses: actions/checkout@v1
       - name: Generate ZIP
         run: |
           zip deployment.zip *.py
+      - name: Debug AWS Region
+        run: |
+          echo ${{ secrets.AWS_REGION }}
+          echo ${{ secrets.AWS_ACCESS_KEY_ID }}
+          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        
       - name: default deploy
         uses: appleboy/lambda-action@master
         with:
